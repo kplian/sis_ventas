@@ -19,7 +19,6 @@ Phx.vista.PedidoReq = {
 		Phx.vista.PedidoReq.superclass.constructor.call(this,config);
 		this.addButton('btnFin',{text:'Siguiente',iconCls: 'badelante',disabled:true,handler:this.gestionarWF,tooltip: '<b>Continuar con estado siguiente</b>'});
         
-        this.iniciarEventos();
 		this.store.baseParams={tipo_interfaz:this.nombreVista};
 		this.load({params:{start:0, limit:this.tam_pag}});
 		//Eventos

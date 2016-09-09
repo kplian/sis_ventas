@@ -14,9 +14,10 @@ Phx.vista.Pedido=Ext.extend(Phx.gridInterfaz,{
 	constructor:function(config){
 		this.maestro=config.maestro;
     	//llama al constructor de la clase padre
+
 		Phx.vista.Pedido.superclass.constructor.call(this,config);
 		this.init();
-		//this.load({params:{start:0, limit:this.tam_pag}})
+		this.load({params:{start:0, limit:this.tam_pag}})
 		this.crearVentanaWF();
 		//Eventos
 		this.iniciarEventos();
@@ -266,10 +267,12 @@ Phx.vista.Pedido=Ext.extend(Phx.gridInterfaz,{
 				gwidth: 100,
 				maxLength:1179650,
 				validator: function(val){
-					if(this.Cmp.precio_total<val){
+					if(this.Cmp){
+						if(this.Cmp.precio_total<val){
 						return 'El monto pagado debe ser menor o igual al precio total';
-					} else{
-						return true;
+						} else{
+							return true;
+						}	
 					}
 				}
 			},
@@ -362,7 +365,7 @@ Phx.vista.Pedido=Ext.extend(Phx.gridInterfaz,{
 			grid : true,
 			form : true
 		},
-		{
+		/*{
 	   		config:{
 	       		    name:'id_lugar',
 	   				origen:'LUGAR',
@@ -381,7 +384,7 @@ Phx.vista.Pedido=Ext.extend(Phx.gridInterfaz,{
 			},
    			grid:true,
    			form:true
-	   },
+	   },*/
 		{
 			config:{
 				name: 'direccion',
@@ -707,7 +710,7 @@ Phx.vista.Pedido=Ext.extend(Phx.gridInterfaz,{
                             totalProperty:'total',
                             fields: ['id_tipo_estado','codigo_estado','nombre_estado','tipo_asignacion'],
                             // turn on remote sorting
-                            remoteSort: true,
+                        remoteSort: true,
                             baseParams:{par_filtro:'tipes.nombre_estado#tipes.codigo'}
                         }),
                         valueField: 'id_tipo_estado',
